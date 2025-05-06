@@ -1,9 +1,7 @@
-Feature: Login
+Feature: Browser launch
 
-  Scenario: Login with valid credentials
+  Scenario: Launch Chrome browser
     Given User launches the browser
-    When User navigates to login page
-    And User enters credentials
-      | username | testuser |
-      | password | pass123  |
-    Then User should see the homepage
+    When User opens Google homepage
+    Then Page title should contain "Google"
+    And Close the browser
