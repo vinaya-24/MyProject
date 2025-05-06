@@ -1,14 +1,13 @@
 package runners;
 
-import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(
-    features = "src/test/resources/features",         // Path to feature files
-    glue = "stepDefinitions",                         // Package with step defs
-    plugin = {"pretty", "html:target/cucumber-reports"},  // Reporting
+    features = "src/test/resources/features",
+    glue = "stepDefinitions",
+    plugin = {"pretty", "html:target/cucumber-reports.html"},
     monochrome = true
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
-    // No need to override anything for now — this runner integrates with TestNG
 }
