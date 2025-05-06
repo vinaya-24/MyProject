@@ -1,4 +1,4 @@
-Feature: Browser launch
+Feature: Google Search Page
 
   Scenario: Launch Chrome browser
     Given User launches the browser

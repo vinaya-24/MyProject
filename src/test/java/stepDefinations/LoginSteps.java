@@ -1,36 +1,31 @@
 package stepDefinations;
 
 import io.cucumber.java.en.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import static org.testng.Assert.*;
+import org.testng.Assert;
+import pages.GooglePage;
+import utils.DriverFactory;
 
 public class LoginSteps {
-
-    WebDriver driver;
+    GooglePage googlePage;
 
     @Given("User launches the browser")
     public void user_launches_the_browser() {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\nadas\\Downloads\\chrome-win64 (1)\\chromedriver.exe.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        DriverFactory.initDriver();
     }
 
     @When("User opens Google homepage")
     public void user_opens_google_homepage() {
-        driver.get("https://www.google.com");
+        DriverFactory.getDriver().get("https://www.google.com");
+        googlePage = new GooglePage(DriverFactory.getDriver());
     }
 
     @Then("Page title should contain {string}")
-    public void page_title_should_contain(String expectedTitle) {
-        String actualTitle = driver.getTitle();
-        assertTrue(actualTitle.contains(expectedTitle), "Title does not contain: " + expectedTitle);
+    public void page_title_should_contain(String title) {
+        Assert.assertTrue(googlePage.getPageTitle().contains(title));
     }
 
     @Then("Close the browser")
     public void close_the_browser() {
-        if (driver != null) {
-            driver.quit();
-        }
+        DriverFactory.quitDriver();
     }
 }
